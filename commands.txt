@@ -1,0 +1,114 @@
+Session-1
+Basic Commands
+--------------------------------------
+show ip interface brief
+show interface gig0/0
+show mac address-table dynamic
+clear mac address-table dynamic
+show ip route
+
+Assign ip address to routers
+---------------------------------
+(config) interface GigabitEthernet 0/1
+(config-if) ip address 10.10.10.1 255.255.255.0
+(config-if) no shutdown
+Configure static route
+-----------------------------------
+(config) ip route 10.10.20.0 255.255.255.0 10.10.10.2
+
+Session-2
+Configure the dns server in routers
+------------------------------------
+(config) ip domain-lookup
+(config) ip name-server 10.10.10.10
+ARP
+---
+show arp
+arp -a
+arp -n
+clear arp-cache
+
+Session-4
+Router and Switch Configuration
+-----------------------------------
+(config) hostname R1
+(config) interface FastEthernet 0/0
+(config-if) ip address 10.10.10.1 255.255.255.0
+(config-if) no shutdown
+Assign default-gateway to switch
+------------------------------------
+(config) ip default-gateway 10.10.10.2
+Assign description to the interfaces
+-------------------------------------
+(config) interfaces FastEthernet 0/0
+(config-if) description of this interface is link to Switch 1
+Verify and configure the speed and duplex on interfaces
+-----------------------------------------
+show interface f0/1
+(config) interface FastEthernet 0/2
+(config-if) speed 100
+(config-if) duplex full
+Check OS Version
+--------------------
+show version
+CDP & LLDP
+----------
+show cdp neighbors
+(config) interface FastEthernet 0/1
+(config-if) no cdp enable
+(config) no cdp run
+show cdp neighbors detail
+
+lldp run
+no lldp run
+no lldp transmit
+no lldp receive
+show lldp
+show lldp neighbors
+show lldp neighbors detail
+
+Session-5
+View the running configuration
+------------------------------
+show running-config
+show startup-config
+Factory Reset Router
+--------------------
+write erase
+no
+show run
+show start
+Password Recovery
+--------------------
+(config) enable secret Password1
+(config) config-register 0x2120
+(config) end
+copy run start
+reload
+confreg 0x2142
+reset
+no
+copy start run
+(config) no enable secret
+(config) config-register 0x2102
+(config) end
+copy run start
+reload
+Configuration Backup
+--------------------
+copy run flash
+show flash
+copy start tftp
+copy flash tftp
+delete flash:file-name.bin
+reload
+IOS Image Upgrade
+-----------------
+show version
+copy tftp flash
+show flash
+(config) boot system file-name.bin
+reload
+show version
+
+
